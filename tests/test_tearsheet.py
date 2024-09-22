@@ -275,7 +275,7 @@ class TestTearSheet(unittest.TestCase):
 
         jh_div = test._jh_div(asset_name_1, asset_name_2, scaled_vector_1, portfolio_price_1, portfolio_returns_1)
 
-        eg_div = test._eg_div(asset_name_1, asset_name_2, adf_dataframe, adf_test_stat, cointegration_vector.loc[0][1],
+        eg_div = test._eg_div(asset_name_1, asset_name_2, adf_dataframe, adf_test_stat, cointegration_vector.iloc[0].iloc[1],
                               portfolio_price, portfolio_returns, pacf_result, acf_result, residuals, qq_y, x,
                               residuals_dataframe)
 

@@ -55,7 +55,7 @@ class MultivariateCointegration:
 
         if nan_method == "ffill":
             # Use front-fill to impute
-            price_df = price_df.fillna(method='ffill')
+            price_df = price_df.ffill()
 
         elif nan_method == "spline":
             # Use cubic spline to impute

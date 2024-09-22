@@ -41,7 +41,7 @@ def get_minimum_hl_hedge_ratio(price_data: pd.DataFrame, dependent_variable: str
     X.drop(columns=dependent_variable, axis=1, inplace=True)
 
     y = price_data[dependent_variable].copy()
-    initial_guess = (y[0] / X).mean().values
+    initial_guess = (y.iloc[0] / X).mean().values
     result = minimize(_min_hl_function, x0=initial_guess, method='BFGS', tol=1e-5, args=(X, y))
     residuals = y - (result.x * X).sum(axis=1)
 

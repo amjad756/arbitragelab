@@ -40,11 +40,11 @@ class TestMinimumProfitTradingRule(unittest.TestCase):
         strategy = MinimumProfitTradingRule(self.shares, self.optimal_levels)
 
         # Add initial spread value
-        strategy.update_spread_value(self.spread_series[0])
+        strategy.update_spread_value(self.spread_series.iloc[0])
 
         # Run over next
         for ind in range(1, len(self.spread_series[1:])):
-            strategy.update_spread_value(self.spread_series[ind])
+            strategy.update_spread_value(self.spread_series.iloc[ind])
             trade, side = strategy.check_entry_signal()
 
             if trade:

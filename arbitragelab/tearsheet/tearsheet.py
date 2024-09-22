@@ -254,13 +254,13 @@ class TearSheet:
                                                       test_trace.iloc[2::-1][asset_name_2].round(5))})
 
         # Getting the test statistic of every asset for both tests
-        eigen_test_statistic_1 = test_eigen[asset_name_1][-1].round(5)
+        eigen_test_statistic_1 = test_eigen[asset_name_1].iloc[-1].round(5)
 
-        eigen_test_statistic_2 = test_eigen[asset_name_2][-1].round(5)
+        eigen_test_statistic_2 = test_eigen[asset_name_2].iloc[-1].round(5)
 
-        trace_test_statistic_1 = test_trace[asset_name_1][-1].round(5)
+        trace_test_statistic_1 = test_trace[asset_name_1].iloc[-1].round(5)
 
-        trace_test_statistic_2 = test_trace[asset_name_2][-1].round(5)
+        trace_test_statistic_2 = test_trace[asset_name_2].iloc[-1].round(5)
 
         # Calculating the scaled cointegration vectors
         scaled_vector_1 = (portfolio.cointegration_vectors.loc[0] /
@@ -301,15 +301,15 @@ class TearSheet:
         color = self.black
 
         # Interpreting the ADF test results
-        if test_statistic < dataframe.iloc[0][1]:
+        if test_statistic < dataframe.iloc[0].iloc[1]:
 
             message = 'The hypothesis is not rejected at 99% confidence level'
 
-        elif test_statistic < dataframe.iloc[1][1]:
+        elif test_statistic < dataframe.iloc[1].iloc[1]:
 
             message = 'The hypothesis is not rejected at 95% confidence level'
 
-        elif test_statistic < dataframe.iloc[2][1]:
+        elif test_statistic < dataframe.iloc[2].iloc[1]:
 
             message = 'The hypothesis is not rejected at 90% confidence level'
 
@@ -341,15 +341,15 @@ class TearSheet:
         color = self.black
 
         # Interpreting the ADF test results
-        if (test_statistic_1 > dataframe.iloc[0][1]) and test_statistic_2 > dataframe.iloc[0][2]:
+        if (test_statistic_1 > dataframe.iloc[0].iloc[1]) and test_statistic_2 > dataframe.iloc[0].iloc[2]:
 
             message = 'The hypothesis is not rejected at 99% confidence level'
 
-        elif test_statistic_1 > dataframe.iloc[1][1] and test_statistic_2 > dataframe.iloc[1][2]:
+        elif test_statistic_1 > dataframe.iloc[1].iloc[1] and test_statistic_2 > dataframe.iloc[1].iloc[2]:
 
             message = 'The hypothesis is not rejected at 95% confidence level'
 
-        elif test_statistic_1 > dataframe.iloc[2][1] and test_statistic_2 > dataframe.iloc[2][2]:
+        elif test_statistic_1 > dataframe.iloc[2].iloc[1] and test_statistic_2 > dataframe.iloc[2].iloc[2]:
 
             message = 'The hypothesis is not rejected at 90% confidence level'
 
@@ -1805,8 +1805,8 @@ class TearSheet:
             'Value': [round(mu, 5), round(theta, 5), round(sigma, 5), round(mll, 5)]})
 
         # Calculating coefficients for the portfolio price calculation
-        alpha = 1 / model.data[asset_1][0]
-        beta = b / model.data[asset_2][0]
+        alpha = 1 / model.data[asset_1].iloc[0]
+        beta = b / model.data[asset_2].iloc[0]
 
         # Calculating the spread price
         spread_price = alpha * model.data[asset_1] - beta * model.data[asset_2]

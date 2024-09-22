@@ -327,7 +327,7 @@ class PCAStrategy:
         target_quantities = pd.DataFrame()
 
         # Series of current positions for assets in our portfolio
-        position_stock = pd.DataFrame(0, columns=matrix.columns, index=[-1] + list(range(self.n_components)))
+        position_stock = pd.DataFrame(0., columns=matrix.columns, index=[-1] + list(range(self.n_components)))
 
         # Iterating through time windows
         for t in range(corr_window - 1, len(matrix.index) - 1):

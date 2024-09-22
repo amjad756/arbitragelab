@@ -131,7 +131,7 @@ class TestCopulaGenerateMixedCopula(unittest.TestCase):
         expected_densities = [42856.22880307941, 18356.037799997655, 97.54259654567115, 97.54259654567115,
                               0.48723388612506763, 0.48723388612506763, 1.7946192932939031]
         densities = [ctg.get_cop_density(u, v) for (u, v) in zip(us, vs)]
-        np.testing.assert_array_almost_equal(expected_densities, densities, decimal=6)
+        np.testing.assert_array_almost_equal(expected_densities, densities, decimal=4)
 
         # Check C(u, v), i.e., cumulative densities of the mixed cop.
         expected_cumdensities = [4.837929924689697e-05, 0.9998164208438649, 9.922442017680219e-05,

@@ -45,7 +45,7 @@ def get_adf_optimal_hedge_ratio(price_data: pd.DataFrame, dependent_variable: st
     X.drop(columns=dependent_variable, axis=1, inplace=True)
 
     y = price_data[dependent_variable].copy()
-    initial_guess = (y[0] / X).mean().values
+    initial_guess = (y.iloc[0] / X).mean().values
     result = minimize(_min_adf_stat, x0=initial_guess, method='BFGS', tol=1e-5, args=(X, y))
     residuals = y - (result.x * X).sum(axis=1)
 

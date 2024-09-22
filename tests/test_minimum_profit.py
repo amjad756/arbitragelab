@@ -186,4 +186,4 @@ class TestMinimumProfit(unittest.TestCase):
         spread = MinimumProfit.construct_spread(series, beta)
 
         self.assertEqual(spread.size, 421)
-        self.assertAlmostEqual(spread[5], 5.416668, 1e-5)
+        self.assertAlmostEqual(spread.iloc[5], 5.416668, 1e-5)

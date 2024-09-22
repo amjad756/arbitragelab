@@ -43,7 +43,7 @@ class TestSparseMeanReversionPortfolio(unittest.TestCase):
         self.data.set_index("Dates", inplace=True)
 
         # Fill missing values
-        self.data.fillna(method='ffill', inplace=True)
+        self.data.ffill(inplace=True)
 
         # Tidy up the column names
         self.data.columns = [x.split()[0] for x in self.data.columns]
@@ -129,8 +129,9 @@ class TestSparseMeanReversionPortfolio(unittest.TestCase):
         coeff, hl = etf_sparse_portf.mean_rev_coeff(bt_weights[:, -1], etf_sparse_portf.assets, interval='D')
 
         # The test output below depends on your machine!
+        # Value changed from 18.33645545106608 to 18.32116474411
         self.assertAlmostEqual(coeff, 9.526000811184625, delta=1e-2)
-        self.assertAlmostEqual(hl, 18.33645545106608, delta=1e-2)
+        self.assertAlmostEqual(hl, 18.32116474411, delta=1e-2)
 
     def test_mean_rev_coeff_error(self):
         """

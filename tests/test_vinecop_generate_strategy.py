@@ -27,7 +27,7 @@ class TestVineCop(unittest.TestCase):
 
         project_path = os.path.dirname(__file__)
         data_path = project_path + "/test_data/prices_10y_SP500.csv"
-        sp500_prices = pd.read_csv(data_path, index_col=0, parse_dates=True).fillna(method='ffill')
+        sp500_prices = pd.read_csv(data_path, index_col=0, parse_dates=True).ffill()
         sp500_returns = sp500_prices.pct_change().fillna(0)
 
         subsample = sp500_returns[['AAPL', 'ABT', 'V', 'AIZ']]

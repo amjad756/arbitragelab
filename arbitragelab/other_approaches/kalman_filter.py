@@ -162,7 +162,7 @@ class KalmanFilterStrategy:
         results_df.loc[short_entry_index, 'short_units'] = -1
         results_df.loc[short_exit_index, 'short_units'] = 0
 
-        results_df.fillna(method='pad', inplace=True)
+        results_df.ffill(inplace=True)
         results_df['target_quantity'] = results_df['long_units'] + results_df['short_units']
 
         return results_df[['errors', 'target_quantity']]

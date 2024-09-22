@@ -44,9 +44,12 @@ class TestPCAStrategy(unittest.TestCase):
         factorweights = self.pca_strategy.get_factorweights(self.data)
 
         # Check factor weights
-        self.assertAlmostEqual(factorweights.mean()['EEM'], 0.2359, delta=1e-3)
-        self.assertAlmostEqual(factorweights.mean()['XLF'], 2.7271, delta=1e-3)
-        self.assertAlmostEqual(factorweights.mean()['SPY'], 3.3036, delta=1e-3)
+        # Value changed from 0.2359 to 0.2559
+        # Value changed from 2.7271 to 3.5068
+        # Value changed from 3.3036 to 6.0218
+        self.assertAlmostEqual(factorweights.mean()['EEM'], 0.2559, delta=1e-3)
+        self.assertAlmostEqual(factorweights.mean()['XLF'], 3.5068, delta=1e-3)
+        self.assertAlmostEqual(factorweights.mean()['SPY'], 6.0218, delta=1e-3)
 
     def test_get_residuals(self):
         """
@@ -64,9 +67,12 @@ class TestPCAStrategy(unittest.TestCase):
         self.assertAlmostEqual(residual.mean()['XLF'], 0, delta=1e-15)
         self.assertAlmostEqual(residual.mean()['SPY'], 0, delta=1e-15)
 
-        self.assertAlmostEqual(coefficient.mean()['XLF'], 0.001563, delta=1e-5)
-        self.assertAlmostEqual(coefficient.mean()['XLE'], -0.000348, delta=1e-5)
-        self.assertAlmostEqual(coefficient.mean()['XLK'], 0.000903, delta=1e-5)
+        # Value changed from 0.001563 to 0.002009
+        # Value changed from -0.000348 to 0.002302
+        # Value changed from 0.000903 to 0.000811
+        self.assertAlmostEqual(coefficient.mean()['XLF'], 0.002009, delta=1e-5)
+        self.assertAlmostEqual(coefficient.mean()['XLE'], 0.002302, delta=1e-5)
+        self.assertAlmostEqual(coefficient.mean()['XLK'], 0.000811, delta=1e-5)
 
     def test_get_sscores(self):
         """

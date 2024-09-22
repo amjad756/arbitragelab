@@ -98,8 +98,8 @@ class MinimumProfit:
             coint_vec = jo_portfolio.cointegration_vectors.loc[0]
 
             # Normalize based on the first asset
-            coint_vec = coint_vec / coint_vec[0]
-            beta = coint_vec[1]
+            coint_vec = coint_vec / coint_vec.iloc[0]
+            beta = coint_vec.iloc[1]
 
         else:
             # Use Engle-Granger test to find the hedge ratio

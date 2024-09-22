@@ -128,7 +128,7 @@ class CVineCopStrat:
         for idx in range(past_obs, len(positions)):
             # Get current trading signal from Bollinger band
             signal = self.get_cur_signal_bollinger(
-                past_cmpi=cmpis[idx - 1], cur_cmpi=cmpis[idx],
+                past_cmpi=cmpis.iloc[idx - 1], cur_cmpi=cmpis.iloc[idx],
                 running_mean=bollinger_band['Mean'].iloc[idx - 1],
                 upper_threshold=bollinger_band['UpperBound'].iloc[idx - 1],
                 lower_threshold=bollinger_band['LowerBound'].iloc[idx - 1])
@@ -267,26 +267,26 @@ class CVineCopStrat:
                                                                                   index_prices.name])
         prices_df = pd.concat([target_stock_prices, index_prices], axis=1)
 
-        units_df.iloc[0, 0] = 0.5 / prices_df.iloc[0, 0] * positions[0]
-        units_df.iloc[0, 1] = - 0.5 / prices_df.iloc[1, 0] * positions[0]
+        units_df.iloc[0, 0] = 0.5 / prices_df.iloc[0, 0] * positions.iloc[0]
+        units_df.iloc[0, 1] = - 0.5 / prices_df.iloc[1, 0] * positions.iloc[0]
         for i in range(1, len(positions)):
             # By default the new amount of units to be held is the same as the previous step
             units_df.iloc[i, :] = units_df.iloc[i - 1, :]
             # Updating if there are position changes
             # From not short to short
-            if positions[i - 1] != -1 and positions[i] == -1:  # Short 1, long 2
+            if positions.iloc[i - 1] != -1 and positions.iloc[i] == -1:  # Short 1, long 2
                 long_units = 0.5 / prices_df.iloc[i, 1]
                 short_units = 0.5 / prices_df.iloc[i, 0]
                 units_df.iloc[i, 0] = - short_units
                 units_df.iloc[i, 1] = long_units
             # From not long to long
-            if positions[i - 1] != 1 and positions[i] == 1:  # Short 2, long 1
+            if positions.iloc[i - 1] != 1 and positions.iloc[i] == 1:  # Short 2, long 1
                 long_units = 0.5 / prices_df.iloc[i, 0]
                 short_units = 0.5 / prices_df.iloc[i, 1]
                 units_df.iloc[i, 0] = long_units
                 units_df.iloc[i, 1] = - short_units
             # From long/short to none
-            if positions[i - 1] != 0 and positions[i] == 0:  # Exiting
+            if positions.iloc[i - 1] != 0 and positions.iloc[i] == 0:  # Exiting
                 units_df.iloc[i, 0] = 0
                 units_df.iloc[i, 1] = 0
 

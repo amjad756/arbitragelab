@@ -556,7 +556,7 @@ class DistanceStrategy:
             portfolio.loc[short_entry_index, 'short_units'] = -1
             portfolio.loc[short_exit_index, 'short_units'] = 0
 
-            portfolio.fillna(method='pad', inplace=True)
+            portfolio.ffill(inplace=True)
             portfolio['target_quantity'] = portfolio['long_units'] + portfolio['short_units']
 
             # Adding target quantity to signals dataframe

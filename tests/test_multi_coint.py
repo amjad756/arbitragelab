@@ -234,7 +234,7 @@ class TestMultivariateCointegration(unittest.TestCase):
         """
 
         # Creating returns dataframe
-        returns = pd.DataFrame(self.train_data['AEX'].pct_change())
+        returns = pd.DataFrame(self.train_data['AEX'].ffill().pct_change())
 
         # Initialize a trading signal generator
         trade_signal_test = MultivariateCointegration()
@@ -259,7 +259,7 @@ class TestMultivariateCointegration(unittest.TestCase):
         """
 
         # Creating returns dataframe
-        returns = pd.DataFrame(self.train_data['AEX'].pct_change())
+        returns = pd.DataFrame(self.train_data['AEX'].ffill().pct_change())
 
         # Initialize a trading signal generator
         trade_signal_test = MultivariateCointegration()

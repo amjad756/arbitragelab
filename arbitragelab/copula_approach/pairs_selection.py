@@ -96,7 +96,7 @@ class PairsSelector:
         """
 
         if nan_option == 'forward fill':
-            stocks_universe = stocks_universe.fillna(method='ffill', inplace=False)
+            stocks_universe = stocks_universe.ffill(inplace=False)
 
         if nan_option == 'linear interp':
             stocks_universe = stocks_universe.interpolate(method='linear', inplace=False)
@@ -203,8 +203,8 @@ class PairsSelector:
         """
 
         # Convert to normalized prices
-        s1_normalized = s1 / s1[0]
-        s2_normalized = s2 / s2[0]
+        s1_normalized = s1 / s1.iloc[0]
+        s2_normalized = s2 / s2.iloc[0]
 
         # Calculate the sum of Euclidean distance on normalized prices
         result = np.linalg.norm(s1_normalized - s2_normalized)

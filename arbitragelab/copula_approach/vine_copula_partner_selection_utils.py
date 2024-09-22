@@ -87,11 +87,11 @@ def multivariate_rho_vectorized(data_subset: pd.DataFrame, all_possible_combinat
     h_d = (d + 1) / (2 ** d - d - 1)
 
     # Calculating the first estimator of multivariate rho
-    sum_1 = np.product(1 - quadruples_combinations_data, axis=-1).sum(axis=0)
+    sum_1 = np.prod(1 - quadruples_combinations_data, axis=-1).sum(axis=0)
     rho_1 = h_d * (-1 + (2 ** d / n) * sum_1)
 
     # Calculating the second estimator of multivariate rho
-    sum_2 = np.product(quadruples_combinations_data, axis=-1).sum(axis=0)
+    sum_2 = np.prod(quadruples_combinations_data, axis=-1).sum(axis=0)
     rho_2 = h_d * (-1 + (2 ** d / n) * sum_2)
 
     # Calculating the third estimator of multivariate rho
